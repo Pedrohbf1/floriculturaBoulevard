@@ -1,0 +1,16 @@
+.link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.506);
+    font-size: 20px;
+    transition: 0.75s all;
+}
+
+.linkDestacado {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.850);
+}
+
+.link:hover {
+    text-decoration: underline;
+    
+}
