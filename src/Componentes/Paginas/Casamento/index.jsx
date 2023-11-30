@@ -9,7 +9,7 @@ import FirebaseApp from '../../../firebase'
 const Centraliza = styled.div`
     width: 1600px;
     max-width: 100%;
-    margin: 50px auto;
+    margin: 50px auto 130px;
     padding: 20px 0;
     display: flex;
     flex-direction: column;
@@ -56,6 +56,7 @@ const ConteudoGeral = styled.section`
             display: flex;
             flex-direction: column;
             @media (max-width: 910px) {
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
             }

@@ -56,6 +56,7 @@ const ConteudoGeral = styled.section`
             display: flex;
             flex-direction: column;
             @media (max-width: 910px) {
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
             }
