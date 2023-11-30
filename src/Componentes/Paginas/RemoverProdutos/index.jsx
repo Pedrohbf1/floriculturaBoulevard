@@ -124,7 +124,7 @@ const RemoverProdutos = () => {
     async function deletarCard (id) {
         const userDoc = doc(db, "Produtos", id)
 	    await deleteDoc(userDoc)
-        window.location.reload();
+        alert("Produto removido com sucesso. Recarregue a página.");
     }
 
     return (
