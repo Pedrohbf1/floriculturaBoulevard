@@ -2,6 +2,7 @@ import { useState } from "react"
 import styled from "styled-components"
 import { initializeApp } from 'firebase/app'
 import { addDoc, collection, getFirestore } from 'firebase/firestore'
+import { useNavigate } from "react-router-dom"
 
 
 const BotaoEstilizado = styled.button` 
@@ -27,7 +28,7 @@ const ErroParagrafo = styled.h4`
     text-align: center;
 `
 
-const ConfirmarCriarCard = ({arquivoFoto, titulo, filtro, subFiltro, arquivoStorage, userCollectionRef}) => {
+const ConfirmarCriarCard = ({CardCriado, arquivoFoto, titulo, filtro, subFiltro, arquivoStorage, userCollectionRef}) => {
 
     const [erro, setErro] = useState(false)
 
@@ -42,7 +43,8 @@ const ConfirmarCriarCard = ({arquivoFoto, titulo, filtro, subFiltro, arquivoStor
                 nome: titulo,
                 filtro: filtro,
             })
-            window.location.reload()
+            alert("Produto criado com sucesso!")
+            CardCriado()
         }
     }
 

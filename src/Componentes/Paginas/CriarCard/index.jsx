@@ -158,6 +158,14 @@ const CategoriaAdmin = () => {
     const [subFiltro, setSubFiltro] = useState("")
     const [arquivoStorage, setArquivoStorage] = useState("")
 
+    function CardCriado () {
+        setArquivoFoto("")
+        setFiltro("")
+        setSubFiltro("")
+        setArquivoStorage("")
+        setTitulo("")
+    }
+
     async function criarCard (event) {
         
         const file = event.target.files[0]
@@ -431,7 +439,7 @@ const CategoriaAdmin = () => {
                         </div>
                     </footer>
 
-                    {arquivoStorage != "" && <ConfirmarCriarCard arquivoFoto={arquivoFoto} userCollectionRef={userCollectionRef} arquivoStorage={arquivoStorage} titulo={titulo} filtro={filtro} subFiltro={subFiltro}/>}
+                    {arquivoStorage != "" && <ConfirmarCriarCard CardCriado={CardCriado} arquivoFoto={arquivoFoto} userCollectionRef={userCollectionRef} arquivoStorage={arquivoStorage} titulo={titulo} filtro={filtro} subFiltro={subFiltro}/>}
                 </CardExibicaoDiv>}
             </Finalizador>
             
