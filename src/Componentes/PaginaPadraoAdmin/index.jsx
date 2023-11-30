@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import LinkPagina from "../LinkPagina"
 import Rodape from "../Rodape"
@@ -67,12 +67,15 @@ const Centralizador = styled.div`
     padding: 30px 0 ;
 `
 
-function logout () {
-    localStorage.removeItem("logado")
-    window.location.href = "http://localhost:5173/"
-}
-
 const PaginaPadraoAdmin = () => {
+
+    const navigate = useNavigate()
+
+    function logout () {
+        localStorage.removeItem("logado")
+        navigate("/")
+    }
+
     return (
         <main>
             <ModalLogin />
@@ -99,6 +102,9 @@ const PaginaPadraoAdmin = () => {
                 </LinkPagina>
                 <LinkPagina to="registrar" >
                     CRIAR LOGIN
+                </LinkPagina>
+                <LinkPagina to="remover-registrar" >
+                    REMOVER LOGIN
                 </LinkPagina>
             </ListaLink>
 

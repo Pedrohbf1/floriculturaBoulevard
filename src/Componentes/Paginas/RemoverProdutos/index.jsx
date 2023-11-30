@@ -5,6 +5,7 @@ import CardExibicao from "../../CardExibicao"
 import { initializeApp } from 'firebase/app'
 import { collection, deleteDoc, doc, getDocs, getFirestore } from 'firebase/firestore'
 import FirebaseApp from '../../../firebase'
+import { ImBin2 } from 'react-icons/im'
 
 const ConteudoGeral = styled.section`
     width: 1300px;

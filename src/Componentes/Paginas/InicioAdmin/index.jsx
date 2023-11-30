@@ -65,6 +65,14 @@ const InicioAdmin = () => {
                         </main>
                     </Link>
 
+                    <Link to="remover-registrar" className={`
+                        ${style.link}
+                    `}>
+                        <main>
+                            <h3>REMOVER LOGIN</h3>
+                        </main>
+                    </Link>
+
                 </div>
             </DivCentralizadora>
         </>

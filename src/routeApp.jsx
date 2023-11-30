@@ -17,6 +17,7 @@ import CategoriaAdmin from "./Componentes/Paginas/CriarCard"
 import RemoverProdutos from "./Componentes/Paginas/RemoverProdutos"
 
 import firebaseApp from "./firebase"
+import RemoverLogin from "./Componentes/Paginas/RemoverLogin"
 
 function App() {
 
@@ -67,6 +68,7 @@ function App() {
           <Route path="adicionar-produtos" element={<CategoriaAdmin />} />
           <Route path="remover-produtos" element={<RemoverProdutos />} />
           <Route path="registrar" element={<CriarLogin />} />
+          <Route path="remover-registrar" element={<RemoverLogin />} />
         </Route>
 
         <Route path="*" element={<Erro404 />} />
