@@ -18,6 +18,12 @@ import RemoverProdutos from "./Componentes/Paginas/RemoverProdutos"
 
 import firebaseApp from "./firebase"
 import RemoverLogin from "./Componentes/Paginas/RemoverLogin"
+import PaginaPadraoCaixa from "./Componentes/PaginaPadraoCaixa"
+import InicioCaixa from "./Componentes/Paginas/InicioCaixa"
+import AdicionarProdutoCaixa from "./Componentes/Paginas/AdicionarProdutoCaixa"
+import EditarProdutosCaixa from "./Componentes/Paginas/EditarProdutosCaixa"
+import Caixa from "./Componentes/Paginas/Caixa"
+import FluxoCaixa from "./Componentes/Paginas/FluxoCaixa"
 
 function App() {
 
@@ -69,6 +75,14 @@ function App() {
           <Route path="remover-produtos" element={<RemoverProdutos />} />
           <Route path="registrar" element={<CriarLogin />} />
           <Route path="remover-registrar" element={<RemoverLogin />} />
+        </Route>
+
+        <Route path="/admin/caixa" element={<PaginaPadraoCaixa />}>
+          <Route index element={<InicioCaixa />}/>
+          <Route path="cadatrarProduto" element={<AdicionarProdutoCaixa />}/>
+          <Route path="editarProduto" element={<EditarProdutosCaixa />} />
+          <Route path="registrarVenda" element={<Caixa />} />
+          <Route path="fluxoCaixa" element={<FluxoCaixa />} />
         </Route>
 
         <Route path="*" element={<Erro404 />} />

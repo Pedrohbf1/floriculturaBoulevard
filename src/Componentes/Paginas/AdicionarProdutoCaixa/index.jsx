@@ -28,6 +28,15 @@ const Modal = styled.div`
         }
     }
 
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input {
+            width: 900px;
+        }
+    }
+
     div {
         display: flex;
         flex-direction: column;
@@ -39,7 +48,6 @@ const Modal = styled.div`
             border-radius: 9px;
             font-size: 18px;
         }
-        
         section {
             display: flex;
             flex-direction: column;
@@ -79,94 +87,99 @@ const Paragrafo = styled.h4`
     margin: 0;
 `
 
-const CriarLogin = () => {
+const AdicionarProdutoCaixa = () => {
       
     const db = getFirestore(FirebaseApp) 
-    const userCollectionRef = collection(db, "Contas")
+    const userCollectionRef = collection(db, "ProdutosCaixa")
 
-    const [todasContas, setTodasContas] = useState([])
+    const [todosOsProduto, setTodosOsProdutos] = useState([])
 
     useEffect(() => {
         const getUsers = async () => {
           const data = await getDocs(userCollectionRef)
-          setTodasContas(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+          setTodosOsProdutos(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
         }
         getUsers()
     }, [])
 
-    const [mostrarSenha, setMostrarSenha] = useState(true)
-    const [tipoDeSenha, setTipoDeSenha] = useState("password")
+    const [campoVazio, setCampoVazio] = useState(false)
     const [loginExistente, setLoginExistente] = useState(false)
     const [loginCriado, setLoginCriado] = useState(false)
+    const [valorNaoNumero, setValorNaoNumero] = useState(false)
 
-    function exibirSenha () {
-        setMostrarSenha(!mostrarSenha)
-        if(!mostrarSenha) {
-            setTipoDeSenha("password")
-        } else {
-            setTipoDeSenha("text")
-        }
+    const [nomeDoProduto, setNomeDoProduto] = useState("")
+    const [valorDoProduto, setValorDoProduto] = useState("")
+
+    function verificarProdutoExistente (produto) {
+        return todosOsProduto.some((conta) => conta.produto === produto)
     }
 
-    const [usuario, setUsuario] = useState("")
-    const [senha, setSenha] = useState("")
-    const [campoVazio, setCampoVazio] = useState(false)
+    const handleInputChange = (event) => {
+        const valorDigitado = event.target.value
 
-    function verificarUsuarioExistente (usuario) {
-        return todasContas.some((conta) => conta.usuario === usuario)
+        const valorLimpo = valorDigitado.replace(/[^0-9,]/g, '');
+
+        setValorDoProduto(valorLimpo)
     }
 
-    async function entrarNaConta () {
+    async function CadastrarProdutoNoCaixa () {
 
-        if (usuario === "" || senha === ""){
+        if (nomeDoProduto === "" || valorDoProduto === ""){
             setCampoVazio(true)
             setLoginExistente(false)
             setLoginCriado(false)
             return
-        } else if (verificarUsuarioExistente(usuario)) {
+        } else if (verificarProdutoExistente(nomeDoProduto)) {
             setLoginExistente(true)
             setCampoVazio(false)
             setLoginCriado(false)
             return
-        } else {
+        }  else {
             setLoginExistente(false)
             setCampoVazio(false)
             setLoginCriado(true)
-            const user = await addDoc(userCollectionRef, {
-                usuario: usuario,
-                senha: senha,
-            })
-            console.log(user)
+
+            if(valorDoProduto.includes(',')) {
+                const user = await addDoc(userCollectionRef, {
+                    produto: nomeDoProduto,
+                    valor: valorDoProduto 
+                })
+            } else {
+                const user = await addDoc(userCollectionRef, {
+                    produto: nomeDoProduto,
+                    valor: `${parseInt(valorDoProduto)}.00` 
+                })
+            }
         }
     }
 
     return (
         <Modal open>
             <section>
-                <h2>Registrar</h2>
+                <h2>Cadastrar produto</h2>
             </section>
 
             <div>
-                <input type="text" required placeholder="Digite o nome do usuário..." value={usuario} onChange={(e) => setUsuario(e.target.value)}/>
-                        
-                <input type={tipoDeSenha} required placeholder="Digite a senha..." value={senha} onChange={(e) => setSenha(e.target.value)}/>
+                <input type="text" required placeholder="Digite o nome do produto..." value={nomeDoProduto} onChange={(e) => {setNomeDoProduto(e.target.value)}} />
+                
+                <header>
+                    <div><h3>R$</h3></div>
+                    <input type="text" required placeholder="Digite o valor do produto..." value={valorDoProduto} onChange={(e) => {handleInputChange(e)}}/>
+                </header>
 
                 <section>
                     {loginExistente && <p>Este nome de usuario já está cadastrado</p>}
                     {campoVazio && <p>Preencha todos os campos</p>}
-                    {loginCriado && <Paragrafo>Login criado com sucesso</Paragrafo>}
-                    <main>
-                        <input type="checkbox" onClick={() => exibirSenha()}/>
-                        <label>Mostrar minha senha </label>
-                    </main>
+                    {valorNaoNumero && <p>Esse valor não é um numero</p>}
+                    {loginCriado && <Paragrafo>Produto registrado com sucesso</Paragrafo>}
                 </section>
             </div>
 
             <form method="dialog">
-                <button onClick={() => entrarNaConta()}>Registar</button>
+                <button onClick={() => CadastrarProdutoNoCaixa()}>Registar</button>
             </form>
                 </Modal>
     )
 }
 
-export default CriarLogin
+export default AdicionarProdutoCaixa

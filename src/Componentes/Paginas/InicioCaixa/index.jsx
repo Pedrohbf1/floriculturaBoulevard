@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import ModalLogin from "../../ModalLogin"
 import { Link } from "react-router-dom"
-import style from './InicioAdmin.module.css'
+import style from './InicioCaixa.module.css'
 
 const DivCentralizadora = styled.section`
     width: 100%;
@@ -35,49 +35,48 @@ const DivCentralizadora = styled.section`
     }
 `
 
-const InicioAdmin = () => {
+const InicioCaixa = () => {
     return (
         <>
             <DivCentralizadora>
                 <h2>Oque deseja fazer?</h2>
                 <div>
-                    <Link to="adicionar-produtos" className={`
+                    <Link to="/admin" className={`
                         ${style.link}
                     `}>
                         <main>
-                            <h3>ADICIONAR PRODUTOS</h3>
+                            <h3>VOLTAR PARA O PAINEL ADMINISTRATIVO</h3>
                         </main>
                     </Link>
                     
-                    <Link to="remover-produtos" className={`
+                    <Link to="registrarVenda" className={`
                         ${style.link}
                     `}>
                         <main>
-                            <h3>REMOVER PRODUTOS</h3>
+                            <h3>CAIXA</h3>
                         </main>
                     </Link>
 
-                    <Link to="registrar" className={`
+                    <Link to="cadatrarProduto" className={`
                         ${style.link}
                     `}>
                         <main>
-                            <h3>CRIAR LOGIN</h3>
+                            <h3>CADASTRAR PRODUTO</h3>
                         </main>
                     </Link>
 
-                    <Link to="remover-registrar" className={`
+                    <Link to="editarProduto" className={`
                         ${style.link}
                     `}>
                         <main>
-                            <h3>REMOVER LOGIN</h3>
+                            <h3>EDITAR PRODUTOS</h3>
                         </main>
                     </Link>
-
-                    <Link to="caixa" className={`
+                    <Link to="fluxoCaixa" className={`
                         ${style.link}
                     `}>
                         <main>
-                            <h3>IR PARA O CAIXA</h3>
+                            <h3>FLUXO DE CAIXA</h3>
                         </main>
                     </Link>
 
@@ -87,4 +86,4 @@ const InicioAdmin = () => {
     )
 }
 
-export default InicioAdmin
+export default InicioCaixa

@@ -56,9 +56,10 @@ const ListaLink = styled.div`
 const FundoCinza = styled.main`
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.055);
+    background-color: rgba(0, 0, 0, 0.055);
     margin-top: 20px;
     box-sizing: border-box;
+    min-height: 100vh;
 `
 
 const Centralizador = styled.div`
@@ -67,7 +68,7 @@ const Centralizador = styled.div`
     padding: 30px 0 ;
 `
 
-const PaginaPadraoAdmin = () => {
+const PaginaPadraoCaixa = () => {
 
     const navigate = useNavigate()
 
@@ -81,7 +82,7 @@ const PaginaPadraoAdmin = () => {
             <ModalLogin />
             <HeaderEstilizada>
                 <div>
-                    <h1>Painel de controle</h1>
+                    <h1>Caixa Floricultura Boulevard</h1>
                     <button onClick={() => logout()}>Sair</button>
                 </div>
             </HeaderEstilizada>
@@ -92,22 +93,22 @@ const PaginaPadraoAdmin = () => {
 
             <ListaLink>
                 <LinkPagina to="/admin">
-                    INICIO
+                    VOLTAR PARA O PAINEL ADMINISTRATIVO
                 </LinkPagina>
-                <LinkPagina to="/admin/adicionar-produtos">
-                    ADICIONAR PRODUTOS  
+                <LinkPagina to="/admin/caixa">
+                    INICIO  
                 </LinkPagina>
-                <LinkPagina to="/admin/remover-produtos" >
-                    REMOVER PRODUTOS
+                <LinkPagina to="/admin/caixa/registrarVenda" >
+                    CAIXA
                 </LinkPagina>
-                <LinkPagina to="/admin/registrar" >
-                    CRIAR LOGIN
+                <LinkPagina to="/admin/caixa/cadatrarProduto" >
+                    CADASTRAR PRODUTO
                 </LinkPagina>
-                <LinkPagina to="/admin/remover-registrar" >
-                    REMOVER LOGIN
+                <LinkPagina to="/admin/caixa/editarProduto" >
+                    EDITAR PRODUTOS
                 </LinkPagina>
-                <LinkPagina to="caixa">
-                    IR PARA O CAIXA
+                <LinkPagina to="/admin/caixa/fluxoCaixa" >
+                    FLUXO DE CAIXA
                 </LinkPagina>
             </ListaLink>
 
@@ -120,4 +121,4 @@ const PaginaPadraoAdmin = () => {
     )
 }
 
-export default PaginaPadraoAdmin
+export default PaginaPadraoCaixa

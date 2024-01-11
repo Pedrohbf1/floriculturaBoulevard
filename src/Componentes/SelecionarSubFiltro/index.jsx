@@ -15,6 +15,7 @@ const SelecionarSubFiltro = ({ texto, subFilter, name, onChange }) => {
 
     function mandarSubFiltro (subFiltro) {
         onChange(subFiltro)
+        console.log(subFiltro)
     }
 
     return (
